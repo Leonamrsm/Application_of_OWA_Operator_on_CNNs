@@ -22,7 +22,6 @@ class OWAPooling(tf.keras.layers.Layer):
                pool_size=(2, 2),
                strides=None,
                padding='valid',
-               data_format=None,
                name=None,
                sort=True,
                train=True, 
@@ -34,7 +33,6 @@ class OWAPooling(tf.keras.layers.Layer):
         self.pool_size = pool_size
         self.strides = pool_size if strides == None else strides
         self.padding = padding
-        self.data_format = conv_utils.normalize_data_format('channels_last')
         self.sort = sort
         self.train = train
         self.seed = seed if seed != None else 10
@@ -110,10 +108,7 @@ class OWAPooling(tf.keras.layers.Layer):
 
     def compute_output_shape(self, input_shape):
         input_shape = tf.TensorShape(input_shape).as_list()
-        # if self.data_format == 'channels_first':
-        #     rows = input_shape[2]
-        #     cols = input_shape[3]
-        # else:
+
         rows = input_shape[1]
         cols = input_shape[2]
 
@@ -121,10 +116,7 @@ class OWAPooling(tf.keras.layers.Layer):
                                          self.strides[0])
         cols = conv_utils.conv_output_length(cols, self.pool_size[1], self.padding,
                                          self.strides[1])
-        # if self.data_format == 'channels_first':
-        #     return tf.TensorShape(
-        #         [input_shape[0], input_shape[1], rows, cols])
-        # else:
+
         return tf.TensorShape(
                 [input_shape[0], rows, cols, input_shape[3]])
             
@@ -137,9 +129,7 @@ class OWAPooling(tf.keras.layers.Layer):
             'strides':
                 self.strides,
             'padding':
-                self.padding,
-            'data_format':
-                self.data_format
+                self.padding
         }
         base_config = super(OWAPooling, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
