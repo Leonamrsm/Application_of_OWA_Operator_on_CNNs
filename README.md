@@ -32,6 +32,9 @@ OWAPooling(pool_size=(2, 2), strides=None, padding=(0,0), name=None, sort=True, 
 
 
 
+Developed based on the article ["Additional Feature Layers from Ordered Aggregations for Deep Neural Networks"](https://ieeexplore.ieee.org/abstract/document/9177555)
+
+
 ```
 OWAConv_fm(pool_size=(2, 2), strides=None, padding=(0,0), name=None, sort=True, train=True, seed=None, all_channels=False)
 ```
