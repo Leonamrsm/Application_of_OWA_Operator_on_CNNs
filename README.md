@@ -22,7 +22,7 @@ OWAPooling(pool_size=(2, 2), strides=None, padding=(0,0), name=None, sort=True, 
 * **pool_size:** tuple of 2 integers. Window size on which the pooling operation will be performed.
 * **strides:** tuple of 2 integers, or None. Strides values. If `None`, it will default to pool_size.
 * **padding:**  One of "valid" or "same" (case-insensitive). "valid" means no padding. "same" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.
-* * **name:**  The name of the layer (string).
+* **name:**  The name of the layer (string).
 * **sort:** True or False. Defines whether the values of each pooling window will be sorted in descending order.
 * **train:** True or False. True or False. Defines whether the weights of OWA operators will be trained. 
 * **seed:** A Python integer. Used to make the behavior of the initializer deterministic. Note that a seeded initializer will produce the same random values across multiple calls.
