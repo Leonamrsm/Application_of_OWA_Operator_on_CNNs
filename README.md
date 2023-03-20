@@ -17,3 +17,12 @@ Developed based on the article ["Learning ordered pooling weights in image class
 OWAPooling(pool_size=(2, 2), strides=None, padding=(0,0), name=None, sort=True, train=True, seed=None, all_channels=False)
 ```
 
+##### Arguments
+
+* **pool_size:** tuple of 2 integers. Window size on which the pooling operation will be performed.
+* **strides:** tuple of 2 integers, or None. Strides values. If `None`, it will default to pool_size.
+* **padding:**  One of "valid" or "same" (case-insensitive). "valid" means no padding. "same" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.
+* **sort:** 
+* **train:** 
+* **seed:** 
+* **all_channels:** 
