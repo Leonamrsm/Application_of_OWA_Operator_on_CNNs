@@ -21,7 +21,6 @@ class OWAConv_fm(tf.keras.layers.Layer):
     def __init__(self,
                filters, 
                strides=(1, 1),
-               data_format=None,
                name=None,
                train=True, 
                seed=None,
@@ -30,7 +29,6 @@ class OWAConv_fm(tf.keras.layers.Layer):
 
         self.filters = filters
         self.strides = strides
-        self.data_format = conv_utils.normalize_data_format('channels_last')
         self.train = train
         self.seed = seed if seed != None else 10
         
@@ -78,10 +76,7 @@ class OWAConv_fm(tf.keras.layers.Layer):
 
     def compute_output_shape(self, input_shape):
         input_shape = tf.TensorShape(input_shape).as_list()
-        # if self.data_format == 'channels_first':
-        #     rows = input_shape[2]
-        #     cols = input_shape[3]
-        # else:
+
         rows = input_shape[1]
         cols = input_shape[2]
 
@@ -89,10 +84,7 @@ class OWAConv_fm(tf.keras.layers.Layer):
                                          self.strides[0])
         cols = conv_utils.conv_output_length(cols, 1, 'VALID',
                                          self.strides[1])
-        # if self.data_format == 'channels_first':
-        #     return tf.TensorShape(
-        #         [input_shape[0], input_shape[1], rows, cols])
-        # else:
+
         return tf.TensorShape(
                 [input_shape[0], rows, cols, input_shape[3]])
             
@@ -105,9 +97,7 @@ class OWAConv_fm(tf.keras.layers.Layer):
             'strides':
                 self.strides,
             'padding':
-                self.padding,
-            'data_format':
-                self.data_format
+                self.padding
         }
         base_config = super(OWAConv_fm, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
