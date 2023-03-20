@@ -17,7 +17,7 @@ Developed based on the article ["Learning ordered pooling weights in image class
 OWAPooling(pool_size=(2, 2), strides=None, padding=(0,0), name=None, sort=True, train=True, seed=None, all_channels=False)
 ```
 
-##### Arguments
+#### Arguments
 
 * **pool_size:** tuple of 2 integers. Window size on which the pooling operation will be performed.
 * **strides:** tuple of 2 integers, or None. Strides values. If `None`, it will default to pool_size.
@@ -30,21 +30,13 @@ OWAPooling(pool_size=(2, 2), strides=None, padding=(0,0), name=None, sort=True, 
 
 ## OWAConv_fm
 
-
+Performs aggregation of input channels using OWA operators. Channels are sorted in descending order according to the sum of pixels in each channel.
 
 Developed based on the article ["Additional Feature Layers from Ordered Aggregations for Deep Neural Networks"](https://ieeexplore.ieee.org/abstract/document/9177555)
 
 
 ```
-OWAConv_fm(pool_size=(2, 2), strides=None, padding=(0,0), name=None, sort=True, train=True, seed=None, all_channels=False)
+OWAConv_fm(filters, trides=(1, 1), name = None, train=True, seed=None)
 ```
 
-(tf.keras.layers.Layer):
-    def __init__(self,
-               filters, 
-               strides=(1, 1),
-               data_format=None,
-               name=None,
-               train=True, 
-               seed=None,
-               **kwargs):
+#### Arguments
